@@ -19,11 +19,8 @@ function hoverHighlight() {
     $(this).addClass('highlight');
     if (isRandomColor){
       var color = $(this).css("background-color");
-      console.log(color[4]);
-      if (color === "rgb(0, 0, 0)"){
+      if (color === "rgb(0, 0, 0)" || color === "rgb(255, 255, 255)"){
         $(this).css("background-color", randomColor());
-      } else {
-        $(this).css("background-color", darkenColor(color));
       }
     }
   });
@@ -52,10 +49,12 @@ function startNew() {
 }
 
 function randomColor() {
-  var color = '#'; // hexadecimal starting symbol
-  var letters = ['0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F'];
-  for (var i = 0; i < 6; i++) {
-    color += letters[Math.floor(Math.random() * letters.length)];
-  };
+  var color = 'hsl(';
+  color += Math.floor(Math.random() * 360);
+  color += ",";
+  color += Math.floor(Math.random() * 100);
+  color += "%,";
+  color += Math.floor(Math.random() * 100);
+  color += "%)";
   return color;
 }

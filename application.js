@@ -1,27 +1,22 @@
 var isRandomColor = false;
+var isClearColor = false;
 
 $(document).ready(function() {
   newGrid(16);
   $(".startNew").click(function() {
     startNew();
   })
-  $(".randomColor").click(function() {
-    if (isRandomColor) {
-      isRandomColor = false;
-    } else {
-      isRandomColor = true;
-    }
-  });
 });
 
 function hoverHighlight() {
   $(".square").hover(function() {
-    $(this).addClass('highlight');
-    if (isRandomColor){
-      var color = $(this).css("background-color");
-      if (color === "rgb(0, 0, 0)" || color === "rgb(255, 255, 255)"){
-        $(this).css("background-color", randomColor());
-      }
+    console.log($(".clearColor").prop("checked"));
+    if ($(".clearColor").prop('checked')) {
+      $(this).css("background-color", "white");
+    } else if ($(".randomColor").prop('checked')) {
+      $(this).css("background-color", randomColor());
+    } else {
+      $(this).css("background-color", "black");
     }
   });
 }
